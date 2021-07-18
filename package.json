@@ -11,6 +11,18 @@
 	"categories": [
 		"Other"
 	],
+	"publisher": "divlook",
+	"author": {
+		"name": "uihyeon.cha"
+	},
+	"repository": {
+		"type": "git",
+    	"url": "https://github.com/divlook/vscode-color-naming.git"
+	},
+	"bugs": {
+		"url": "https://github.com/divlook/vscode-color-naming/issues"
+	},
+	"homepage": "https://github.com/divlook/vscode-color-naming/blob/main/README.md",
 	"activationEvents": [
 		"onCommand:color-naming.fromSelectedText"
 	],
