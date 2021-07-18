@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/divlook/vscode-color-naming/compare/v1.0.0...v1.0.1) (2021-07-18)
+
+
+### Bug Fixes
+
+* :bug: dependencies 오류 수정 ([e4038cd](https://github.com/divlook/vscode-color-naming/commit/e4038cd0b76c49b1321a672446e288d876962ee5))
+
 # 1.0.0 (2021-07-18)
 
 
