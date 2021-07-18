@@ -17,7 +17,7 @@
 	},
 	"repository": {
 		"type": "git",
-    	"url": "https://github.com/divlook/vscode-color-naming.git"
+		"url": "https://github.com/divlook/vscode-color-naming.git"
 	},
 	"bugs": {
 		"url": "https://github.com/divlook/vscode-color-naming/issues"
@@ -78,7 +78,6 @@
 		"@types/vscode": "^1.58.0",
 		"@typescript-eslint/eslint-plugin": "^4.26.0",
 		"@typescript-eslint/parser": "^4.26.0",
-		"change-case": "^4.1.2",
 		"eslint": "^7.27.0",
 		"eslint-plugin-prettier": "^3.4.0",
 		"glob": "^7.1.7",
@@ -89,5 +88,8 @@
 		"tscpaths": "^0.0.9",
 		"typescript": "^4.3.2",
 		"vscode-test": "^1.5.2"
+	},
+	"dependencies": {
+		"change-case": "^4.1.2"
 	}
 }
