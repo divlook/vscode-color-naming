@@ -1,7 +1,7 @@
 {
 	"name": "color-naming",
 	"displayName": "Color Naming",
-	"description": "A VS Code Extension that names colors using ntc.js.",
+	"description": "A VS Code Extension that names colors using ntc.js",
 	"license": "MIT",
 	"version": "1.0.1",
 	"private": true,
@@ -61,6 +61,7 @@
 		"precompile": "yarn run clean",
 		"pretest": "yarn run compile && yarn run lint",
 		"prewatch": "yarn run clean",
+		"publish": "npx vsce publish",
 		"test": "node ./out/test/runTest.js",
 		"vscode:prepublish": "yarn run compile",
 		"watch": "tsc-watch -p tsconfig.json --onSuccess 'yarn run paths'"
