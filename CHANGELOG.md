@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/divlook/vscode-color-naming/compare/v1.0.1...v1.1.0) (2021-07-18)
+
+
+### Features
+
+* :memo: 앱 설명 및 스크린샷 추가 ([00691cf](https://github.com/divlook/vscode-color-naming/commit/00691cf6b18c044888853a5bd023bb4a801f4d48))
+
 ## [1.0.1](https://github.com/divlook/vscode-color-naming/compare/v1.0.0...v1.0.1) (2021-07-18)
 
 
