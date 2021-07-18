@@ -1,6 +1,6 @@
 {
 	"name": "color-naming",
-	"displayName": "color-naming",
+	"displayName": "Color Naming",
 	"description": "A VS Code Extension that names colors using ntc.js.",
 	"license": "MIT",
 	"version": "0.0.1",
@@ -11,24 +11,43 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:color-naming.helloWorld"
+		"onCommand:color-naming.fromSelectedText"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
+		"configuration": {
+			"title": "ColorNaming",
+			"properties": {
+				"colorNaming.caseStyle": {
+					"type": "string",
+					"enum": ["Kebab", "Camel"],
+					"default": "Kebab",
+					"enumDescriptions": [
+						"ex) kebab-case, light-gray-10",
+						"ex) camelCase, lightGray_10"
+					]
+				}
+			}
+		},
 		"commands": [
 			{
-				"command": "color-naming.helloWorld",
-				"title": "Hello World"
+				"command": "color-naming.fromSelectedText",
+				"title": "Color Naming: From selected text"
 			}
 		]
 	},
 	"scripts": {
-		"vscode:prepublish": "yarn run compile",
-		"compile": "tsc -p ./",
-		"watch": "tsc -watch -p ./",
-		"pretest": "yarn run compile && yarn run lint",
+		"clean": "rm -rf ./out",
+		"compile": "tsc -p tsconfig.json",
 		"lint": "eslint src --ext ts",
-		"test": "node ./out/test/runTest.js"
+		"paths": "tscpaths -p tsconfig.json -s ./src -o ./out",
+		"postcompile": "yarn run paths",
+		"precompile": "yarn run clean",
+		"pretest": "yarn run compile && yarn run lint",
+		"prewatch": "yarn run clean",
+		"test": "node ./out/test/runTest.js",
+		"vscode:prepublish": "yarn run compile",
+		"watch": "tsc-watch -p tsconfig.json --onSuccess 'yarn run paths'"
 	},
 	"devDependencies": {
 		"@types/glob": "^7.1.3",
