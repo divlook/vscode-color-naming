@@ -3,7 +3,7 @@
 	"displayName": "Color Naming",
 	"description": "A VS Code Extension that names colors using ntc.js",
 	"license": "MIT",
-	"version": "1.1.0",
+	"version": "1.2.0",
 	"private": true,
 	"engines": {
 		"vscode": "^1.58.0"

@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/divlook/vscode-color-naming/compare/v1.1.0...v1.2.0) (2021-07-20)
+
+
+### Features
+
+* :art: add icon ([e8c7cfc](https://github.com/divlook/vscode-color-naming/commit/e8c7cfc2392baaf2fb01adaa2cd7bd8bb72dbd7d))
+
 # [1.1.0](https://github.com/divlook/vscode-color-naming/compare/v1.0.1...v1.1.0) (2021-07-18)
 
 
