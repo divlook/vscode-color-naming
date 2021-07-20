@@ -15,6 +15,7 @@
 	"author": {
 		"name": "uihyeon.cha"
 	},
+	"icon": "images/color-naming-symbol.png",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/divlook/vscode-color-naming.git"
