@@ -34,9 +34,9 @@ export class NameThatColor {
         if (hex.length === 4) {
             hex =
                 '#' +
-                hex.substr(1, 1).repeat(2) +
-                hex.substr(2, 1).repeat(2) +
-                hex.substr(3, 1).repeat(2)
+                hex.substring(1, 2).repeat(2) +
+                hex.substring(2, 3).repeat(2) +
+                hex.substring(3, 4).repeat(2)
         }
 
         const [r, g, b] = this.toRGB(hex)
