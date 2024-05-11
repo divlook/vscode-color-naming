@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/divlook/vscode-color-naming/compare/v1.2.0...v1.2.1) (2024-05-11)
+
+
+### Bug Fixes
+
+* substr to substring ([a5892e8](https://github.com/divlook/vscode-color-naming/commit/a5892e81d4b4d5a062ae31c5992256514a2d3a73))
+
 # [1.2.0](https://github.com/divlook/vscode-color-naming/compare/v1.1.0...v1.2.0) (2021-07-20)
 
 
