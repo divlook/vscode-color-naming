@@ -58,14 +58,14 @@
 		"compile": "tsc -p tsconfig.json",
 		"lint": "eslint src --ext ts",
 		"paths": "tscpaths -p tsconfig.json -s ./src -o ./out",
-		"postcompile": "yarn run paths",
-		"precompile": "yarn run clean",
-		"pretest": "yarn run compile && yarn run lint",
-		"prewatch": "yarn run clean",
-		"publish": "npx vsce publish",
+		"postcompile": "pnpm run paths",
+		"precompile": "pnpm run clean",
+		"pretest": "pnpm run compile && pnpm run lint",
+		"prewatch": "pnpm run clean",
+		"vscode:publish": "npx vsce publish",
 		"test": "node ./out/test/runTest.js",
-		"vscode:prepublish": "yarn run compile",
-		"watch": "tsc-watch -p tsconfig.json --onSuccess 'yarn run paths'"
+		"vscode:prepublish": "pnpm run compile",
+		"watch": "tsc-watch -p tsconfig.json --onSuccess 'pnpm run paths'"
 	},
 	"devDependencies": {
 		"@semantic-release/changelog": "^5.0.1",
