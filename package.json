@@ -48,7 +48,35 @@
 				"command": "color-naming.fromSelectedText",
 				"title": "Color Naming: From selected text"
 			}
-		]
+		],
+		"viewsContainers": {
+			"activitybar": [
+				{
+					"id": "color-naming",
+					"title": "Color Naming",
+					"icon": "images/color-naming-activitybar-icon.svg"
+				}
+			]
+		},
+		"views": {
+			"color-naming": [
+				{
+					"id": "color-naming-view",
+					"name": "Color Naming"
+				}
+			]
+		},
+		"viewsWelcome": [
+			{
+				"view": "color-naming-view",
+				"contents": "hello world",
+				"when": "false"
+			}
+		],
+		"menus": {
+			"view/title": [],
+			"view/item/context": []
+		}
 	},
 	"scripts": {
 		"clean": "rm -rf ./out",

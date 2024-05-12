@@ -146,3 +146,5 @@ export class NameThatColor {
         ]
     }
 }
+
+export const ntc = new NameThatColor()

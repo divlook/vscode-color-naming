@@ -1,9 +1,7 @@
 import * as vscode from 'vscode'
 import { camelCase, paramCase } from 'change-case'
-import { NameThatColor } from '@/ntc'
+import { NameThatColor, ntc } from '@/ntc'
 import { Config } from '@/color-naming/interfaces'
-
-const ntc = new NameThatColor()
 
 export const getConfig = () => {
     const config = vscode.workspace.getConfiguration('colorNaming')
