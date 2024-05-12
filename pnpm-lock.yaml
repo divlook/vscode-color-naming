@@ -37,11 +37,11 @@ importers:
         specifier: ^8.2.2
         version: 8.2.3
       '@types/node':
-        specifier: 14.x
-        version: 14.17.5
+        specifier: 20.12.11
+        version: 20.12.11
       '@types/vscode':
-        specifier: ^1.58.0
-        version: 1.58.1
+        specifier: ^1.89.0
+        version: 1.89.0
       '@typescript-eslint/eslint-plugin':
         specifier: ^4.26.0
         version: 4.28.3(@typescript-eslint/parser@4.28.3(eslint@7.30.0)(typescript@4.3.5))(eslint@7.30.0)(typescript@4.3.5)
@@ -227,11 +227,8 @@ packages:
   '@types/mocha@8.2.3':
     resolution: {integrity: sha512-ekGvFhFgrc2zYQoX4JeZPmVzZxw6Dtllga7iGHzfbYIYkAMUx/sAFP2GdFpLff+vdHXu5fl7WX9AT+TtqYcsyw==}
 
-  '@types/node@14.17.5':
-    resolution: {integrity: sha512-bjqH2cX/O33jXT/UmReo2pM7DIJREPMnarixbQ57DOOzzFaI6D2+IcwaJQaJpv0M1E9TIhPCYVxrkcityLjlqA==}
-
-  '@types/node@16.3.3':
-    resolution: {integrity: sha512-8h7k1YgQKxKXWckzFCMfsIwn0Y61UK6tlD6y2lOb3hTOIMlK3t9/QwHOhc81TwU+RMf0As5fj7NPjroERCnejQ==}
+  '@types/node@20.12.11':
+    resolution: {integrity: sha512-vDg9PZ/zi+Nqp6boSOT7plNuthRugEKixDv5sFTIpkE89MmNtEArAShI4mxuX2+UrLEe9pxC1vm2cjm9YlWbJw==}
 
   '@types/normalize-package-data@2.4.1':
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}
@@ -242,8 +239,8 @@ packages:
   '@types/retry@0.12.1':
     resolution: {integrity: sha512-xoDlM2S4ortawSWORYqsdU+2rxdh4LRW9ytc3zmT37RIKQh6IHyKwwtKhKis9ah8ol07DCkZxPt8BBvPjC6v4g==}
 
-  '@types/vscode@1.58.1':
-    resolution: {integrity: sha512-sa76rDXiSif09he8KoaWWUQxsuBr2+uND0xn1GUbEODkuEjp2p7Rqd3t5qlvklfmAedLFdL7MdnsPa57uzwcOw==}
+  '@types/vscode@1.89.0':
+    resolution: {integrity: sha512-TMfGKLSVxfGfoO8JfIE/neZqv7QLwS4nwPwL/NwMvxtAY2230H2I4Z5xx6836pmJvMAzqooRQ4pmLm7RUicP3A==}
 
   '@typescript-eslint/eslint-plugin@4.28.3':
     resolution: {integrity: sha512-jW8sEFu1ZeaV8xzwsfi6Vgtty2jf7/lJmQmDkDruBjYAbx5DA8JtbcMnP0rNPUG+oH5GoQBTSp+9613BzuIpYg==}
@@ -2215,6 +2212,9 @@ packages:
     engines: {node: '>=0.8.0'}
     hasBin: true
 
+  undici-types@5.26.5:
+    resolution: {integrity: sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==}
+
   union-value@1.0.1:
     resolution: {integrity: sha512-tJfXmxMeWYnczCVs7XAEvIV7ieppALdyepWMkHkwciRpZraG/xwT+s2JN8+pr1+8jCRf80FFzvr+MpQeeoF4Xg==}
     engines: {node: '>=0.10.0'}
@@ -2558,7 +2558,7 @@ snapshots:
   '@types/glob@7.1.4':
     dependencies:
       '@types/minimatch': 3.0.5
-      '@types/node': 16.3.3
+      '@types/node': 20.12.11
 
   '@types/json-schema@7.0.8': {}
 
@@ -2568,9 +2568,9 @@ snapshots:
 
   '@types/mocha@8.2.3': {}
 
-  '@types/node@14.17.5': {}
-
-  '@types/node@16.3.3': {}
+  '@types/node@20.12.11':
+    dependencies:
+      undici-types: 5.26.5
 
   '@types/normalize-package-data@2.4.1': {}
 
@@ -2578,7 +2578,7 @@ snapshots:
 
   '@types/retry@0.12.1': {}
 
-  '@types/vscode@1.58.1': {}
+  '@types/vscode@1.89.0': {}
 
   '@typescript-eslint/eslint-plugin@4.28.3(@typescript-eslint/parser@4.28.3(eslint@7.30.0)(typescript@4.3.5))(eslint@7.30.0)(typescript@4.3.5)':
     dependencies:
@@ -4609,6 +4609,8 @@ snapshots:
 
   uglify-js@3.13.10:
     optional: true
+
+  undici-types@5.26.5: {}
 
   union-value@1.0.1:
     dependencies:
