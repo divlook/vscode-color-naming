@@ -6,7 +6,7 @@
 	"version": "1.2.1",
 	"private": true,
 	"engines": {
-		"vscode": "^1.58.0"
+		"vscode": "^1.75.0"
 	},
 	"categories": [
 		"Other"
@@ -24,9 +24,6 @@
 		"url": "https://github.com/divlook/vscode-color-naming/issues"
 	},
 	"homepage": "https://github.com/divlook/vscode-color-naming/blob/main/README.md",
-	"activationEvents": [
-		"onCommand:color-naming.fromSelectedText"
-	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"configuration": {
