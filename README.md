@@ -13,7 +13,9 @@ A VS Code Extension that names colors using [ntc.js](https://chir.ag/projects/nt
 
 ![](images/color-naming_2021-07-18.gif)
 
-정의된 이름 중 선택된 HEX Code와 일치하거나 가장 유사한 색깔의 이름을 클립보드에 저장합니다.
+Among the defined names, the name that matches or has the most similar color to the selected HEX Code is saved to the clipboard.
+
+> 정의된 이름 중 선택된 HEX Code와 일치하거나 가장 유사한 색깔의 이름을 클립보드에 저장합니다.
 
 - ex) #000 -> black
 - ex) #111 -> cod-gray-180
