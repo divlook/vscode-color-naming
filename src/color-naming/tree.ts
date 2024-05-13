@@ -1,20 +1,28 @@
-import * as vscode from 'vscode'
 import { ntc } from '@/ntc'
+import { camelCase, paramCase } from 'change-case'
+import * as vscode from 'vscode'
 
-interface ColorCache {
-    text: string
-    colors: Record<string, any>
-    timerId: NodeJS.Timeout | null
-    deleteTimerId: NodeJS.Timeout | null
+namespace ColorNaming {
+    export interface Output {
+        colorName: string
+        difference: number
+    }
+
+    export interface Cache {
+        text: string
+        colors: Record<string, Output>
+        timerId: NodeJS.Timeout | null
+        deleteTimerId: NodeJS.Timeout | null
+    }
 }
 
 export class ColorNamingTreeProvider
     implements vscode.TreeDataProvider<ColorNamingTreeItem>
 {
     /**
-     * Map<fileName, ColorCache>
+     * Map<fileName, ColorNaming.Cache>
      */
-    cacheMap = new Map<string, ColorCache>()
+    cacheMap = new Map<string, ColorNaming.Cache>()
 
     constructor() {
         vscode.window.onDidChangeActiveTextEditor(() =>
@@ -41,6 +49,16 @@ export class ColorNamingTreeProvider
         const cache = this.cacheMap.get(fileName)
 
         if (element) {
+            const result = cache?.colors[element.label]
+
+            if (element.root && result) {
+                const colorName = `${result.colorName} ${result.difference}`
+                return [
+                    new ColorNamingTreeItem(camelCase(colorName)),
+                    new ColorNamingTreeItem(paramCase(colorName)),
+                ]
+            }
+
             return []
         }
 
@@ -62,10 +80,9 @@ export class ColorNamingTreeProvider
         )
 
         return keys.map((hex) => {
-            const colorName = cache.colors[hex]
-
-            return new ColorNamingTreeItem(`${hex}: ${colorName}`, {
-                collapsibleState: vscode.TreeItemCollapsibleState.None,
+            return new ColorNamingTreeItem(hex, {
+                root: true,
+                collapsibleState: vscode.TreeItemCollapsibleState.Expanded,
             })
         })
     }
@@ -101,10 +118,10 @@ export class ColorNamingTreeProvider
                     colors: {},
                     timerId: null,
                     deleteTimerId: null,
-                } as ColorCache)
+                } as ColorNaming.Cache)
             )
         }
-        const saveCache = (data: ColorCache) => {
+        const saveCache = (data: ColorNaming.Cache) => {
             this.cacheMap.set(fileName, data)
         }
 
@@ -118,7 +135,7 @@ export class ColorNamingTreeProvider
 
         cache.timerId = setTimeout(() => {
             const cache = getCache()
-            const colors: ColorCache['colors'] = {}
+            const colors: ColorNaming.Cache['colors'] = {}
 
             Array.from(
                 new Set(cache.text.match(/#[a-zA-Z0-9]{3,6}/g) || [])
@@ -129,8 +146,12 @@ export class ColorNamingTreeProvider
                     return
                 }
 
-                const [hex, colorName] = match
-                colors[hex] = colorName
+                const [hex, colorName, difference] = match
+
+                colors[hex] = {
+                    colorName,
+                    difference,
+                }
             })
 
             cache.colors = colors
@@ -154,9 +175,12 @@ export class ColorNamingTreeProvider
 }
 
 export class ColorNamingTreeItem extends vscode.TreeItem {
+    root = false
+
     constructor(
         public readonly label: string,
         options: {
+            root?: boolean
             collapsibleState?: vscode.TreeItemCollapsibleState
             command?: vscode.Command
         } = {}
@@ -164,6 +188,7 @@ export class ColorNamingTreeItem extends vscode.TreeItem {
         super(label, options.collapsibleState)
 
         this.label = label
+        this.root = options.root || false
         this.collapsibleState = options.collapsibleState
         this.command = options.command
     }
