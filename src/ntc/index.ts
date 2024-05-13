@@ -1,5 +1,5 @@
-import { DefinedColor, HEX, HSL, MatchingColor, RGB } from '@/ntc/interfaces'
 import { colorNames } from '@/ntc/color-names'
+import { DefinedColor, HEX, HSL, MatchingColor, RGB } from '@/ntc/interfaces'
 
 /**
  * ntc.js (Name that Color JavaScript)

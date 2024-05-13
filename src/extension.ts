@@ -1,6 +1,6 @@
-import * as vscode from 'vscode'
 import { fromSelectedText } from '@/color-naming'
 import { ColorNamingTreeProvider } from '@/color-naming/tree'
+import * as vscode from 'vscode'
 
 export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(
