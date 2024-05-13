@@ -40,11 +40,28 @@ export class ColorNamingTreeProvider
         const fileName = vscode.window.activeTextEditor?.document.fileName || ''
         const cache = this.cacheMap.get(fileName)
 
-        if (element || !cache) {
+        if (element) {
             return []
         }
 
-        return Object.keys(cache.colors).map((hex) => {
+        if (!cache) {
+            vscode.commands.executeCommand(
+                'setContext',
+                'color-naming.colors',
+                0
+            )
+            return []
+        }
+
+        const keys = Object.keys(cache.colors)
+
+        vscode.commands.executeCommand(
+            'setContext',
+            'color-naming.colors',
+            keys.length
+        )
+
+        return keys.map((hex) => {
             const colorName = cache.colors[hex]
 
             return new ColorNamingTreeItem(`${hex}: ${colorName}`, {

@@ -69,8 +69,8 @@
 		"viewsWelcome": [
 			{
 				"view": "color-naming-view",
-				"contents": "hello world",
-				"when": "false"
+				"contents": "Color not found.",
+				"when": "color-naming.colors == 0"
 			}
 		],
 		"menus": {
