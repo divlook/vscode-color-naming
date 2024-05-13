@@ -99,8 +99,6 @@ export class ColorNamingTreeProvider
             clearTimeout(cache.timerId)
         }
 
-        vscode.window.showInformationMessage(fileName)
-
         cache.timerId = setTimeout(() => {
             const cache = getCache()
             const colors: ColorCache['colors'] = {}
@@ -124,9 +122,12 @@ export class ColorNamingTreeProvider
                 clearTimeout(cache.deleteTimerId)
             }
 
-            cache.deleteTimerId = setTimeout(() => {
-                this.cacheMap.delete(fileName)
-            }, 5 * 60 * 1000)
+            cache.deleteTimerId = setTimeout(
+                () => {
+                    this.cacheMap.delete(fileName)
+                },
+                5 * 60 * 1000
+            )
 
             saveCache(cache)
 
