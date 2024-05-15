@@ -1,3 +1,12 @@
+# [1.3.0](https://github.com/divlook/vscode-color-naming/compare/v1.2.1...v1.3.0) (2024-05-15)
+
+
+### Features
+
+* treeview 기능 초안 ([4c628c2](https://github.com/divlook/vscode-color-naming/commit/4c628c20f908c8f3144abfba3171224b3e8f45e2))
+* treeView에서 아이콘 클릭해서 복사하기 기능 추가 ([135d9ae](https://github.com/divlook/vscode-color-naming/commit/135d9aedcf4e13c288786b02627f917952284082))
+* tree에 색 표시 ([ad57a49](https://github.com/divlook/vscode-color-naming/commit/ad57a497e5ac09a47f17ef15584c4259e22f78e5))
+
 ## [1.2.1](https://github.com/divlook/vscode-color-naming/compare/v1.2.0...v1.2.1) (2024-05-11)
 
 
