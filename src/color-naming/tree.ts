@@ -1,6 +1,5 @@
 import { ColorNaming } from '@/color-naming'
 import { ntc } from '@/ntc'
-import { camelCase, paramCase } from 'change-case'
 import * as vscode from 'vscode'
 
 export class ColorNamingTreeProvider
@@ -39,21 +38,33 @@ export class ColorNamingTreeProvider
             const result = cache?.colors[element.label]
 
             if (element.root && result) {
-                const colorName = `${result.colorName} ${result.difference}`
-                const camelCaseName = camelCase(colorName)
-                const paramCaseName = paramCase(colorName)
-
                 return [
-                    new ColorNamingTreeItem(`camelCase: ${camelCaseName}`, {
-                        data: {
-                            colorName: camelCaseName,
-                        },
+                    new ColorNamingTreeItem(`Input HEX: ${result.input}`, {
+                        copiedText: result.input,
                     }),
-                    new ColorNamingTreeItem(`param-case: ${paramCaseName}`, {
-                        data: {
-                            colorName: paramCaseName,
-                        },
+                    new ColorNamingTreeItem(`Output HEX: ${result.hex}`, {
+                        copiedText: result.hex,
                     }),
+                    new ColorNamingTreeItem(`Color name: ${result.colorName}`, {
+                        copiedText: result.colorName,
+                    }),
+                    new ColorNamingTreeItem(
+                        `Difference: ${result.difference}`,
+                        {
+                            copiedText: `${result.difference}`,
+                        }
+                    ),
+                    ...Array.from(ColorNaming.getCaseData(result).values()).map(
+                        (row) => {
+                            return new ColorNamingTreeItem(
+                                `${row.caseType}: ${row.caseName}`,
+                                {
+                                    data: result,
+                                    copiedText: row.caseName,
+                                }
+                            )
+                        }
+                    ),
                 ]
             }
 
@@ -146,7 +157,9 @@ export class ColorNamingTreeProvider
 
                 const [hex, colorName, difference] = match
 
-                colors[hex] = {
+                colors[row] = {
+                    input: row,
+                    hex,
                     colorName,
                     difference,
                 }
@@ -174,8 +187,12 @@ export class ColorNamingTreeProvider
 
 export class ColorNamingTreeItem extends vscode.TreeItem {
     root = false
-    data = {
+    copiedText = ''
+    data: ColorNaming.Output = {
         colorName: '',
+        hex: '',
+        input: '',
+        difference: 0,
     }
 
     constructor(
@@ -184,6 +201,7 @@ export class ColorNamingTreeItem extends vscode.TreeItem {
             root?: boolean
             collapsibleState?: vscode.TreeItemCollapsibleState
             command?: vscode.Command
+            copiedText?: string
             data?: ColorNamingTreeItem['data']
         } = {}
     ) {
@@ -191,6 +209,7 @@ export class ColorNamingTreeItem extends vscode.TreeItem {
 
         this.label = label
         this.root = options.root || false
+        this.copiedText = options.copiedText || ''
         this.collapsibleState = options.collapsibleState
         this.command = options.command
 

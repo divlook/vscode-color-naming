@@ -20,23 +20,19 @@ export class NameThatColor {
         }
     }
 
-    getName(hex: HEX): MatchingColor | null {
-        hex = hex.toUpperCase()
+    getName(_hex: HEX): MatchingColor | null {
+        let hex = _hex.toUpperCase()
 
         if (hex.length < 3 || hex.length > 7) {
             return null
         }
 
-        if (hex.length % 3 === 0) {
+        if (!/^#.+/.test(hex)) {
             hex = `#${hex}`
         }
 
         if (hex.length === 4) {
-            hex =
-                '#' +
-                hex.substring(1, 2).repeat(2) +
-                hex.substring(2, 3).repeat(2) +
-                hex.substring(3, 4).repeat(2)
+            hex = `$${hex[1].repeat(2)}${hex[2].repeat(2)}${hex[3].repeat(2)}`
         }
 
         const [r, g, b] = this.toRGB(hex)

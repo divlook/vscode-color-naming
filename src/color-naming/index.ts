@@ -10,6 +10,8 @@ import * as vscode from 'vscode'
 
 export namespace ColorNaming {
     export interface Output {
+        input: string
+        hex: string
         colorName: string
         difference: number
     }
@@ -19,6 +21,11 @@ export namespace ColorNaming {
         colors: Record<string, Output>
         timerId: NodeJS.Timeout | null
         deleteTimerId: NodeJS.Timeout | null
+    }
+
+    interface OutputWithCaseData extends Output {
+        caseType: 'camelCase' | 'param-case'
+        caseName: string
     }
 
     export const getConfig = () => {
@@ -45,7 +52,7 @@ export namespace ColorNaming {
                         return
                     }
 
-                    const copiedText = element?.data.colorName
+                    const copiedText = element?.copiedText
 
                     if (!copiedText) {
                         return
@@ -97,5 +104,30 @@ export namespace ColorNaming {
         }
 
         copyText(convertedName)
+    }
+
+    export const getCaseData = (
+        data: Output
+    ): Map<OutputWithCaseData['caseType'], OutputWithCaseData> => {
+        const combinedName = `${data.colorName} ${data.difference}`
+
+        return new Map<OutputWithCaseData['caseType'], OutputWithCaseData>([
+            [
+                'camelCase',
+                {
+                    ...data,
+                    caseType: 'camelCase',
+                    caseName: camelCase(combinedName),
+                },
+            ],
+            [
+                'param-case',
+                {
+                    ...data,
+                    caseType: 'param-case',
+                    caseName: paramCase(combinedName),
+                },
+            ],
+        ])
     }
 }
