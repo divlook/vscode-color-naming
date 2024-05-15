@@ -1,3 +1,10 @@
+## [1.3.2](https://github.com/divlook/vscode-color-naming/compare/v1.3.1...v1.3.2) (2024-05-15)
+
+
+### Bug Fixes
+
+* An incorrect build was uploaded and fixed. ([0fe1e76](https://github.com/divlook/vscode-color-naming/commit/0fe1e766d0f44f3242a82177ec82a00dd590d699))
+
 ## [1.3.1](https://github.com/divlook/vscode-color-naming/compare/v1.3.0...v1.3.1) (2024-05-15)
 
 # [1.3.0](https://github.com/divlook/vscode-color-naming/compare/v1.2.1...v1.3.0) (2024-05-15)
