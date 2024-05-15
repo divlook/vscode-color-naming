@@ -20,6 +20,12 @@ Among the defined names, the name that matches or has the most similar color to 
 - ex) #000 -> black
 - ex) #111 -> cod-gray-180
 
+![](images/color-naming-2024-05-15.png)
+
+Extracts colors from open files and recommends color names in the tree view.
+
+> 열려 있는 파일에서 색상을 추출하고 트리뷰에 색상 이름을 추천합니다.
+
 ## Extension Settings
 
 - `"colorNaming.caseStyle": "Kebab"`
