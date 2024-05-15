@@ -102,7 +102,8 @@
 		"precompile": "pnpm run clean",
 		"pretest": "pnpm run compile && pnpm run lint",
 		"prewatch": "pnpm run clean",
-		"vscode:publish": "npx vsce publish",
+		"package": "pnpm vsce package --no-dependencies",
+		"publish": "pnpm vsce publish --no-dependencies",
 		"test": "node ./out/test/runTest.js",
 		"vscode:prepublish": "pnpm run compile",
 		"watch": "tsc-watch -p tsconfig.json --onSuccess 'pnpm run paths'"
