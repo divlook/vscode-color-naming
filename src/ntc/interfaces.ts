@@ -17,7 +17,7 @@ export type DefinedColor = [
     number?,
     number?,
     number?,
-    number?
+    number?,
 ]
 
 /**

@@ -1,13 +1,8 @@
+import { ColorNaming } from '@/color-naming'
 import * as vscode from 'vscode'
-import { fromSelectedText } from '@/color-naming'
 
 export function activate(context: vscode.ExtensionContext) {
-    const disposable = vscode.commands.registerCommand(
-        'color-naming.fromSelectedText',
-        fromSelectedText
-    )
-
-    context.subscriptions.push(disposable)
+    ColorNaming.initialize(context)
 }
 
 export function deactivate() {}
