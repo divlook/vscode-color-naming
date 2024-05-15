@@ -6,7 +6,7 @@
 	"version": "1.2.1",
 	"private": true,
 	"engines": {
-		"vscode": "^1.58.0"
+		"vscode": "^1.89.0"
 	},
 	"categories": [
 		"Other"
@@ -24,10 +24,8 @@
 		"url": "https://github.com/divlook/vscode-color-naming/issues"
 	},
 	"homepage": "https://github.com/divlook/vscode-color-naming/blob/main/README.md",
-	"activationEvents": [
-		"onCommand:color-naming.fromSelectedText"
-	],
 	"main": "./out/extension.js",
+	"activationEvents": [],
 	"contributes": {
 		"configuration": {
 			"title": "ColorNaming",
@@ -49,23 +47,65 @@
 		"commands": [
 			{
 				"command": "color-naming.fromSelectedText",
-				"title": "Color Naming: From selected text"
+				"title": "From selected text",
+				"category": "Color Naming"
+			},
+			{
+				"command": "color-naming.copyTextFromViewItem",
+				"title": "Copy selected text",
+				"category": "Color Naming",
+				"icon": "$(files)",
+				"enablement": "view == color-naming-view && viewItem == color-naming.items"
 			}
-		]
+		],
+		"viewsContainers": {
+			"activitybar": [
+				{
+					"id": "color-naming",
+					"title": "Color Naming",
+					"icon": "images/color-naming-activitybar-icon.svg"
+				}
+			]
+		},
+		"views": {
+			"color-naming": [
+				{
+					"id": "color-naming-view",
+					"name": "Color Naming"
+				}
+			]
+		},
+		"viewsWelcome": [
+			{
+				"view": "color-naming-view",
+				"contents": "Color not found.",
+				"when": "color-naming.colors == 0"
+			}
+		],
+		"menus": {
+			"view/title": [],
+			"view/item/context": [
+				{
+					"command": "color-naming.copyTextFromViewItem",
+					"group": "inline",
+					"when": "view == color-naming-view && viewItem == color-naming.items"
+				}
+			]
+		}
 	},
 	"scripts": {
 		"clean": "rm -rf ./out",
 		"compile": "tsc -p tsconfig.json",
 		"lint": "eslint src --ext ts",
 		"paths": "tscpaths -p tsconfig.json -s ./src -o ./out",
-		"postcompile": "yarn run paths",
-		"precompile": "yarn run clean",
-		"pretest": "yarn run compile && yarn run lint",
-		"prewatch": "yarn run clean",
-		"publish": "npx vsce publish",
+		"postcompile": "pnpm run paths",
+		"precompile": "pnpm run clean",
+		"pretest": "pnpm run compile && pnpm run lint",
+		"prewatch": "pnpm run clean",
+		"vscode:publish": "npx vsce publish",
 		"test": "node ./out/test/runTest.js",
-		"vscode:prepublish": "yarn run compile",
-		"watch": "tsc-watch -p tsconfig.json --onSuccess 'yarn run paths'"
+		"vscode:prepublish": "pnpm run compile",
+		"watch": "tsc-watch -p tsconfig.json --onSuccess 'pnpm run paths'"
 	},
 	"devDependencies": {
 		"@semantic-release/changelog": "^5.0.1",
@@ -76,19 +116,20 @@
 		"@semantic-release/release-notes-generator": "^9.0.3",
 		"@types/glob": "^7.1.3",
 		"@types/mocha": "^8.2.2",
-		"@types/node": "14.x",
-		"@types/vscode": "^1.58.0",
-		"@typescript-eslint/eslint-plugin": "^4.26.0",
-		"@typescript-eslint/parser": "^4.26.0",
-		"eslint": "^7.27.0",
-		"eslint-plugin-prettier": "^3.4.0",
-		"glob": "^7.1.7",
+		"@types/node": "20.12.11",
+		"@types/vscode": "^1.89.0",
+		"@typescript-eslint/eslint-plugin": "^6",
+		"@typescript-eslint/parser": "^6",
+		"eslint": "^8",
+		"eslint-plugin-prettier": "^5.1.3",
+		"glob": "^7.2.3",
 		"mocha": "^8.4.0",
-		"prettier": "^2.3.2",
+		"prettier": "^3.2.5",
+		"prettier-plugin-organize-imports": "^3.2.4",
 		"semantic-release": "^17.4.4",
-		"tsc-watch": "^4.4.0",
+		"tsc-watch": "^4.6.2",
 		"tscpaths": "^0.0.9",
-		"typescript": "^4.3.2",
+		"typescript": "^5.4.5",
 		"vscode-test": "^1.5.2"
 	},
 	"dependencies": {
