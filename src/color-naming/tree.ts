@@ -1,20 +1,7 @@
+import { ColorNaming } from '@/color-naming'
 import { ntc } from '@/ntc'
 import { camelCase, paramCase } from 'change-case'
 import * as vscode from 'vscode'
-
-namespace ColorNaming {
-    export interface Output {
-        colorName: string
-        difference: number
-    }
-
-    export interface Cache {
-        text: string
-        colors: Record<string, Output>
-        timerId: NodeJS.Timeout | null
-        deleteTimerId: NodeJS.Timeout | null
-    }
-}
 
 export class ColorNamingTreeProvider
     implements vscode.TreeDataProvider<ColorNamingTreeItem>
@@ -53,9 +40,20 @@ export class ColorNamingTreeProvider
 
             if (element.root && result) {
                 const colorName = `${result.colorName} ${result.difference}`
+                const camelCaseName = camelCase(colorName)
+                const paramCaseName = paramCase(colorName)
+
                 return [
-                    new ColorNamingTreeItem(camelCase(colorName)),
-                    new ColorNamingTreeItem(paramCase(colorName)),
+                    new ColorNamingTreeItem(`camelCase: ${camelCaseName}`, {
+                        data: {
+                            colorName: camelCaseName,
+                        },
+                    }),
+                    new ColorNamingTreeItem(`param-case: ${paramCaseName}`, {
+                        data: {
+                            colorName: paramCaseName,
+                        },
+                    }),
                 ]
             }
 
@@ -176,6 +174,9 @@ export class ColorNamingTreeProvider
 
 export class ColorNamingTreeItem extends vscode.TreeItem {
     root = false
+    data = {
+        colorName: '',
+    }
 
     constructor(
         public readonly label: string,
@@ -183,6 +184,7 @@ export class ColorNamingTreeItem extends vscode.TreeItem {
             root?: boolean
             collapsibleState?: vscode.TreeItemCollapsibleState
             command?: vscode.Command
+            data?: ColorNamingTreeItem['data']
         } = {}
     ) {
         super(label, options.collapsibleState)
@@ -191,5 +193,11 @@ export class ColorNamingTreeItem extends vscode.TreeItem {
         this.root = options.root || false
         this.collapsibleState = options.collapsibleState
         this.command = options.command
+
+        Object.assign(this.data, options.data)
+
+        if (!this.root) {
+            this.contextValue = 'color-naming.items'
+        }
     }
 }

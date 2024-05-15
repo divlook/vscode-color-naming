@@ -46,7 +46,15 @@
 		"commands": [
 			{
 				"command": "color-naming.fromSelectedText",
-				"title": "Color Naming: From selected text"
+				"title": "From selected text",
+				"category": "Color Naming"
+			},
+			{
+				"command": "color-naming.copyTextFromViewItem",
+				"title": "Copy selected text",
+				"category": "Color Naming",
+				"icon": "$(files)",
+				"enablement": "view == color-naming-view && viewItem == color-naming.items"
 			}
 		],
 		"viewsContainers": {
@@ -75,7 +83,13 @@
 		],
 		"menus": {
 			"view/title": [],
-			"view/item/context": []
+			"view/item/context": [
+				{
+					"command": "color-naming.copyTextFromViewItem",
+					"group": "inline",
+					"when": "view == color-naming-view && viewItem == color-naming.items"
+				}
+			]
 		}
 	},
 	"scripts": {
